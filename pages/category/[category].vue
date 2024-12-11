@@ -1,12 +1,12 @@
 <template>
   <div class="container mx-auto px-4 py-8">
-    <h1 class="text-3xl font-bold mb-6">{{ category }} Recipes</h1>
+    <h1 class="text-3xl font-bold mb-6 text-gray-900 dark:text-gray-100">{{ category }} Recipes</h1>
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       <template v-if="pending">
         <RecipeCardSkeleton v-for="n in 6" :key="n" />
       </template>
       <template v-else-if="error">
-        <div class="col-span-full text-center text-red-600">
+        <div class="col-span-full text-center text-red-600 dark:text-red-400">
           {{ error.message }}
         </div>
       </template>
@@ -15,6 +15,7 @@
           v-for="recipe in filteredRecipes"
           :key="recipe.id"
           :to="`/recipe/${recipe.id}`"
+          class="transition-transform hover:scale-105"
         >
           <RecipeCard :recipe="recipe" />
         </NuxtLink>
